@@ -25,9 +25,34 @@ export default class Providers {
   };
 
   static GetAllPost = async () => {
-    const result = await axios.get(`${BASE_API}/users`);
+    const result = await axios.get(`${BASE_API}/posts`);
     const {data} = result;
 
     return {data, total: data.length};
+  };
+
+  static GetDetailPostById = async (id: number) => {
+    const result = await axios.get(`${BASE_API}/posts/${id}`);
+    const {data} = result;
+
+    return data;
+  };
+
+  static GetDetailUserById = async (id: number) => {
+    const result = await axios.get(`${BASE_API}/users/${id}`);
+    const {data} = result;
+
+    if (Object.keys(data).length > 0) {
+      return data;
+    } else {
+      throw 'User not found';
+    }
+  };
+
+  static GetCommentByPostId = async (id: number) => {
+    const result = await axios.get(`${BASE_API}/posts/${id}/comments`);
+    const {data} = result;
+
+    return data;
   };
 }

@@ -19,7 +19,7 @@ export const Icon = styled.img`
 export const InputStyled = styled.input`
   width: 100%;
   padding: 8px 15px;
-  background: #f5f5f5;
+  background: #d9d9d9;
 
   border-radius: 20px;
   text-align: center;

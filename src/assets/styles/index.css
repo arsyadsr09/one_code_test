@@ -19,3 +19,9 @@ code {
 .pointer {
   cursor: pointer;
 }
+
+.disabled-highlight {
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}

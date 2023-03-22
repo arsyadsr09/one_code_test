@@ -1,4 +1,5 @@
 import {atom, PrimitiveAtom} from 'jotai';
+import {PostAtomType} from '../typed/states';
 import {UserInteface} from '../typed/user_typed';
 
 export const userDataAtom: PrimitiveAtom<UserInteface> = atom(
@@ -9,8 +10,8 @@ export const userDataAtom: PrimitiveAtom<UserInteface> = atom(
     : null
 );
 export const isLoginFormActiveAtom: PrimitiveAtom<boolean> = atom(false);
-export const postAtom = atom({
+export const postAtom: PrimitiveAtom<PostAtomType> = atom<PostAtomType>({
   total: 0,
   data: [],
 });
-export const postPagination: PrimitiveAtom<number> = atom(1);
+export const postCurrentPageAtom: PrimitiveAtom<number> = atom(1);
