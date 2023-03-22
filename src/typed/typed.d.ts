@@ -1,4 +1,4 @@
-export type LoginProps = {
+export interface LoginProps {
   username: string;
   password: string;
-};
+}
