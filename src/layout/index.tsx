@@ -1,6 +1,6 @@
 import {useAtom} from 'jotai';
 import * as React from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useLocation, useNavigate} from 'react-router-dom';
 import {userDataAtom} from '../states';
 
 import Header from './Header';
@@ -11,15 +11,13 @@ type Props = {
 };
 
 export default function Layout({children}: Props) {
+  const location = useLocation();
   const navigate = useNavigate();
   const [userData] = useAtom(userDataAtom);
 
   React.useEffect(() => {
-    console.log(userData);
-    if (userData) {
+    if (location.pathname === '/' && userData) {
       navigate('/home');
-    } else {
-      navigate('/');
     }
   }, [userData]);
 

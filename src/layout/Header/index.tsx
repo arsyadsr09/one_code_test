@@ -1,6 +1,8 @@
 import {useAtom} from 'jotai';
 import * as React from 'react';
+import {useNavigate} from 'react-router-dom';
 import Button from '../../components/Button';
+import DropdownHeader from '../../components/DropdownHeader';
 import {Row} from '../../components/general_styled';
 import {userDataAtom, isLoginFormActiveAtom} from '../../states';
 import {HeaderCanvas, TextHeader, Menu} from './styled';
@@ -10,6 +12,7 @@ export type HeaderCanvasProps = {
 };
 
 export default function Header() {
+  const navigate = useNavigate();
   const [userData] = useAtom(userDataAtom);
   const [isLoginFormActive, setIsLoginFormActive] = useAtom(
     isLoginFormActiveAtom
@@ -19,15 +22,21 @@ export default function Header() {
     setIsLoginFormActive(!isLoginFormActive);
   };
 
+  const onLogoClicked = () => {
+    navigate('/home');
+  };
+
   const renderLoginAction = () => {
     if (userData) {
       return (
-        <Row>
-          <TextHeader>
-            Welcome,{' '}
-            <span className="is-blue pointer">{userData.username}</span>
-          </TextHeader>
-        </Row>
+        <DropdownHeader>
+          <Row>
+            <TextHeader className="disabled-highlight">
+              Welcome,{' '}
+              <span className="is-blue pointer">{userData.username}</span>
+            </TextHeader>
+          </Row>
+        </DropdownHeader>
       );
     } else {
       return <Button text="Login" size={'sm'} onClick={onButtonClicked} />;
@@ -38,7 +47,12 @@ export default function Header() {
 
   return (
     <HeaderCanvas isHide={isLoginFormActive}>
-      <TextHeader className="is-logo">Cinta Coding</TextHeader>
+      <TextHeader
+        className="is-logo disabled-highlight pointer"
+        onClick={() => onLogoClicked()}
+      >
+        Cinta Coding
+      </TextHeader>
       {userData && renderMenu()}
       {renderLoginAction()}
     </HeaderCanvas>
