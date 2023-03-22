@@ -11,8 +11,17 @@ export const ColumnCenter = styled.div`
   }
 `;
 
+export const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Row = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
+
+  &.align-start {
+    align-items: start;
+  }
 `;
